@@ -53,7 +53,7 @@ def before_request():
 
 
 PATH_TO_CKPT = '/opt/graph_def/frozen_inference_graph.pb'
-PATH_TO_LABELS = MODEL_BASE + '/object_detection/data/mscoco_label_map.pbtxt'
+PATH_TO_LABELS = '/opt/label_map.pbtxt'
 
 content_types = {'jpg': 'image/jpeg',
                  'jpeg': 'image/jpeg',
@@ -85,7 +85,7 @@ class ObjectDetector(object):
 
     label_map = label_map_util.load_labelmap(PATH_TO_LABELS)
     categories = label_map_util.convert_label_map_to_categories(
-        label_map, max_num_classes=90, use_display_name=True)
+        label_map, max_num_classes=3, use_display_name=True)
     self.category_index = label_map_util.create_category_index(categories)
 
   def _build_graph(self):
